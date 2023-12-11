@@ -1,5 +1,132 @@
-# Object file
-*.o
+public class ProgramTests
+{
+    [Fact]
+    public void BubbleSort_ReturnsSortedArray()
+    {
+        // Arrange
+        int[] arr = { 4, 2, 1, 5, 3 };
+        int[] expected = { 1, 2, 3, 4, 5 };
 
-# Ada Library Information
-*.ali
+        // Act
+        int[] result = Program.BubbleSort(arr);
+
+        // Assert
+        Assert.Equal(expected, result);
+    }
+
+    [Theory]
+    [InlineData("level", true)]
+    [InlineData("hello", false)]
+    [InlineData("Racecar", true)]
+    public void IsPalindrome_ReturnsCorrectResult(string str, bool expected)
+    {
+        // Act
+        bool result = Program.IsPalindrome(str);
+
+        // Assert
+        Assert.Equal(expected, result);
+    }
+
+    [Fact]
+    public void Factorial_ReturnsCorrectResult()
+    {
+        // Arrange
+        int n = 5;
+        int expected = 120;
+
+        // Act
+        int result = Program.Factorial(n);
+
+        // Assert
+        Assert.Equal(expected, result);
+    }
+
+    [Fact]
+    public void Factorial_ThrowsExceptionForNegativeNumber()
+    {
+        // Arrange
+        int n = -1;
+
+        // Act & Assert
+        Assert.Throws<ArgumentException>(() => Program.Factorial(n));
+    }
+
+    [Fact]
+    public void Fibonacci_ReturnsCorrectResult()
+    {
+        // Arrange
+        int position = 6;
+        int expected = 8;
+
+        // Act
+        int result = Program.Fibonacci(position);
+
+        // Assert
+        Assert.Equal(expected, result);
+    }
+
+    [Fact]
+    public void Fibonacci_ThrowsExceptionForNegativePosition()
+    {
+        // Arrange
+        int position = -1;
+
+        // Act & Assert
+        Assert.Throws<ArgumentException>(() => Program.Fibonacci(position));
+    }
+
+    [Fact]
+    public void Exponent_ReturnsCorrectResult()
+    {
+        // Arrange
+        double num = 2;
+        double exp = 3;
+        double expected = 8;
+
+        // Act
+        double result = Program.Exponent(num, exp);
+
+        // Assert
+        Assert.Equal(expected, result);
+    }
+
+    [Fact]
+    public void IsPrime_ReturnsCorrectResult()
+    {
+        // Arrange
+        int number = 7;
+        bool expected = true;
+
+        // Act
+        bool result = Program.IsPrime(number);
+
+        // Assert
+        Assert.Equal(expected, result);
+    }
+
+    [Fact]
+    public void IsPrime_ReturnsFalseForNonPrimeNumber()
+    {
+        // Arrange
+        int number = 10;
+
+        // Act
+        bool result = Program.IsPrime(number);
+
+        // Assert
+        Assert.False(result);
+    }
+
+    [Fact]
+    public void IsPrime_ReturnsFalseForNegativeNumber()
+    {
+        // Arrange
+        int number = -7;
+
+        // Act
+        bool result = Program.IsPrime(number);
+
+        // Assert
+        Assert.False(result);
+    }
+}
